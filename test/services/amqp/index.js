@@ -1,9 +1,6 @@
-require('babel/register');
-
-var amqp = require('../../../lib/amqp');
+var amqp = require('../../../index');
 
 var server = amqp.server('localhost', require('../fibonacci/fast'));
-
 
 process.send('');
 
