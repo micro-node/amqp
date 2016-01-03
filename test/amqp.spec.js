@@ -6,9 +6,11 @@ var cp = require('child_process');
 var amqp = require('../lib/amqp');
 
 // helper functions
-function server(){
+function server(cb){
 
-  return cp.fork(__dirname + '/services/amqp/index.js');
+  var proc = cp.fork(__dirname + '/services/amqp/index.js');
+
+  proc.on('message', cb);
 }
 
 function client(){
@@ -18,12 +20,9 @@ function client(){
 
 describe('AMQP RPC Server Client', function() {
 
-  this.timeout(60000);
+  this.timeout(20000);
 
-  before(function(){
-
-    server();
-  })
+  before(server);
 
   it('should one client one server', function(done){
 
@@ -47,11 +46,8 @@ describe('AMQP RPC Server Client', function() {
     })
   });
 
-  before(function(){
-
-    server();
-    server();
-  })
+  before(server);
+  before(server);
 
   it('one client N srever', function(){
 
