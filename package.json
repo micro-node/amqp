@@ -37,6 +37,7 @@
   },
   "devDependencies": {
     "chai": "^3.3.0",
-    "ghooks": "^1.0.1"
+    "ghooks": "^1.0.1",
+    "v8-profiler": "^5.5.0"
   }
 }
