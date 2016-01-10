@@ -1,7 +1,9 @@
+require('babel/register');
+
 var assert = require('assert');
 var async = require('async');
 var cp = require('child_process');
-var amqp = require('../index');
+var amqp = require('../lib/amqp');
 
 // helper functions
 function server(cb){

@@ -1,3 +1,2 @@
-require('babel/register');
 
-module.exports = require('./lib/amqp');
+module.exports = require('./build/amqp');
