@@ -2,10 +2,10 @@
   "name": "micro-node-amqp",
   "version": "1.0.1",
   "description": "An AMQP helper",
-  "main": "index.js",
+  "main": "build/amqp.js",
   "scripts": {
-    "compile": "babel --presets es2015 -d ./build/ ./lib/",
-    "prepublish": "npm run compile",
+    "build": "babel -d ./build/ ./lib/",
+    "prepublish": "npm run build",
     "test": "mocha",
     "lint": "eslint lib/*.js"
   },
@@ -33,12 +33,12 @@
   "dependencies": {
     "amqplib": "^0.4.0",
     "async": "^1.4.2",
-    "babel": "^5.8.23",
     "lodash": "^3.10.1",
     "node-uuid": "^1.4.7"
   },
   "devDependencies": {
     "babel-cli": "^6.4.0",
+    "babel-register": "^6.0.0",
     "babel-preset-es2015": "^6.3.13",
     "chai": "^3.3.0",
     "eslint": "^1.10.3",
