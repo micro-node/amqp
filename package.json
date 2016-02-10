@@ -1,6 +1,6 @@
 {
   "name": "micro-node-amqp",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "An AMQP helper",
   "main": "build/amqp.js",
   "scripts": {

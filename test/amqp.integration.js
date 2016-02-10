@@ -5,18 +5,30 @@ var async = require('async');
 var cp = require('child_process');
 var amqp = require('../lib/amqp');
 
+var children = [];
+
 // helper functions
 function server(cb){
 
-  var proc = cp.fork(__dirname + '/services/amqp/index.js');
+  var child = cp.fork(__dirname + '/services/amqp/index.js');
 
-  proc.on('message', cb);
+  child.on('message', cb);
+
+  children.push(child);
 }
 
 function client(){
 
   amqp.client('localhost').apply(null, arguments);
 }
+
+process.on('exit', function(){
+
+  children.forEach(function(child){
+
+    child.kill();
+  })
+})
 
 describe('AMQP RPC Server Client', function() {
 
@@ -49,7 +61,7 @@ describe('AMQP RPC Server Client', function() {
   before(server);
   before(server);
 
-  it('one client N srever', function(){
+  it('one client N srever', function(done){
 
     var requests = [30, 35, 40, 47, 53];
     var responses = [832040, 9227465, 102334155, 2971215073, 53316291173];
