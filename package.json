@@ -1,10 +1,11 @@
 {
   "name": "micro-node-amqp",
-  "version": "1.0.6",
+  "version": "1.1.0",
   "description": "An AMQP helper",
   "main": "build/amqp.js",
   "scripts": {
     "build": "babel -d ./build/ ./lib/",
+    "pretest": "npm run build",
     "prepublish": "npm run build",
     "test": "DEBUG=amqp mocha",
     "lint": "eslint lib/*.js"
