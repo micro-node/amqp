@@ -17,6 +17,15 @@ function server(cb){
   children.push(child);
 }
 
+function brokenServer(cb){
+
+  var child = cp.fork(__dirname + '/services/amqp/broken.js');
+
+  child.on('message', cb);
+
+  children.push(child);
+}
+
 function client(a , cb){
 
   amqp.client('localhost', queue)(a, function(resp){
@@ -101,6 +110,23 @@ describe('AMQP RPC Server Client', function() {
       });
     })
   });
+
+  describe('error handling', function(){
+
+    before(killAll);
+    before(brokenServer);
+
+    it('should retun error for broken client', function(done){
+
+
+      client(0, function(err, resp){
+
+        assert(resp.error.name, 'ReferenceError');
+        done(err);
+      })
+    })
+
+  })
 
 
   describe('cleanups', function(){

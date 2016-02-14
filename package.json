@@ -1,6 +1,6 @@
 {
   "name": "micro-node-amqp",
-  "version": "1.1.2",
+  "version": "1.1.3",
   "description": "An AMQP helper",
   "main": "build/amqp.js",
   "scripts": {
@@ -36,6 +36,7 @@
     "async": "^1.4.2",
     "debug": "^2.2.0",
     "lodash": "^3.10.1",
+    "micro-node-json-rpc": "^1.1.0",
     "node-uuid": "^1.4.7"
   },
   "devDependencies": {
