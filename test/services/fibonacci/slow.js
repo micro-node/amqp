@@ -2,7 +2,7 @@ module.exports = fibonacci;
 
 function fibonacci(n, callback){
 
-  return callback(null, function fib(n){
+  return callback(function fib(n){
 
     if(n === 0) return 0;
 

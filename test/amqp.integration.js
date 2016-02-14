@@ -17,9 +17,12 @@ function server(cb){
   children.push(child);
 }
 
-function client(){
+function client(a , cb){
 
-  amqp.client('localhost', queue).apply(null, arguments);
+  amqp.client('localhost', queue)(a, function(resp){
+
+    cb(null, resp);
+  });
 }
 
 function killAll(){
@@ -77,7 +80,7 @@ describe('AMQP RPC Server Client', function() {
         var requests = [30, 35, 40, 47, 53];
         var responses = [832040, 9227465, 102334155, 2971215073, 53316291173];
 
-        async.map(requests, amqp.client('localhost', queue), function(err, results){
+        async.map(requests, client, function(err, results){
 
           assert.deepEqual(results, responses);
           done(err)
