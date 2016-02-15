@@ -28,10 +28,7 @@ function brokenServer(cb){
 
 function client(a , cb){
 
-  amqp.client('localhost', queue)(a, function(resp){
-
-    cb(null, resp);
-  });
+  amqp.client('localhost', queue)(a, cb);
 }
 
 function killAll(){
@@ -119,10 +116,10 @@ describe('AMQP RPC Server Client', function() {
     it('should retun error for broken client', function(done){
 
 
-      client(0, function(err, resp){
+      client(0, function(err){
 
-        assert(resp.error.name, 'ReferenceError');
-        done(err);
+        assert(err.name, 'ReferenceError');
+        done();
       })
     })
 
