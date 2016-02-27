@@ -51,7 +51,7 @@ describe('AMQP RPC Server Client', function() {
 
   describe('server <-> client', function(){
 
-    this.timeout(20000);
+    this.timeout(30000);
 
     describe('1 to N', function(){
 
