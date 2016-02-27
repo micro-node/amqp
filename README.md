@@ -19,3 +19,7 @@ This is a slim implementation of RPC calls using AMQP.
 The server handler should respond with a JSON RPC response meaning an Object with a result and an error property (no node style error passing here)
 The client will get the node style error handling for the server response meaning the error will be passed forst and the result second.
 
+## License
+
+MIT © [Haithem Bel Haj](https://github.com/haithembelhaj)
+
