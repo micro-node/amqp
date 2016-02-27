@@ -1,4 +1,8 @@
 [![Build Status](https://travis-ci.org/micro-node/amqp.svg)](http://travis-ci.org/micro-node/amqp)
+[![Dependency Status](https://david-dm.org/micro-node/amqp.svg)](https://david-dm.org/micro-node/amqp)
+[![devDependency Status](https://david-dm.org/micro-node/amqp/dev-status.svg)](https://david-dm.org/micro-node/amqp#info=devDependencies)
+[![Coverage Status](https://coveralls.io/repos/github/micro-node/amqp/badge.svg?branch=master)](https://coveralls.io/github/micro-node/amqp?branch=master)
+
 # AMQP RPC Helper
 
 This is a slim implementation of RPC calls using AMQP.
