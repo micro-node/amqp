@@ -12,7 +12,7 @@ function server(cb){
 
   var child = cp.fork(__dirname + '/services/amqp/index.js');
 
-  child.on('message', cb);
+  setTimeout(cb, 3333);
 
   children.push(child);
 }
@@ -51,7 +51,7 @@ describe('AMQP RPC Server Client', function() {
 
   describe('server <-> client', function(){
 
-    this.timeout(30000);
+    this.timeout(50000);
 
     before(server);
 
