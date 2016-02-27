@@ -26,9 +26,15 @@ function brokenServer(cb){
   children.push(child);
 }
 
-function client(a , cb){
+function client(){
 
-  amqp.client('localhost', queue)(a, cb);
+  var args = Array.prototype.slice.call(arguments);
+
+  args[0] = {params: [args[0]]};
+
+  var amqpClient = amqp.client('localhost', queue);
+
+  amqpClient.apply(amqpClient, args);
 }
 
 function killAll(){
@@ -125,6 +131,20 @@ describe('AMQP RPC Server Client', function() {
 
   })
 
+
+  describe('timeout handling', function(){
+
+    before(killAll);
+
+    it('should retun error for timeout', function(done){
+
+      client(0, {timeout: 100}, function(err){
+
+        assert(err.name, 'Timeout');
+        done();
+      })
+    })
+  })
 
   describe('cleanups', function(){
 
