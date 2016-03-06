@@ -1,6 +1,6 @@
 {
   "name": "micro-node-amqp",
-  "version": "1.1.8",
+  "version": "1.1.9",
   "description": "An AMQP helper",
   "main": "build/amqp.js",
   "scripts": {
@@ -35,11 +35,9 @@
   "homepage": "https://github.com/micro-node/amqp#readme",
   "dependencies": {
     "amqplib": "^0.4.0",
-    "async": "^1.4.2",
     "debug": "^2.2.0",
     "lodash": "^3.10.1",
-    "micro-node-json-rpc": "^1.1.0",
-    "node-uuid": "^1.4.7"
+    "micro-node-json-rpc": "^1.1.0"
   },
   "devDependencies": {
     "babel-cli": "^6.4.0",
@@ -51,6 +49,8 @@
     "ghooks": "^1.0.1",
     "istanbul": "^0.4.2",
     "mocha": "^2.3.4",
-    "v8-profiler": "^5.5.0"
+    "v8-profiler": "^5.5.0",
+    "node-uuid": "^1.4.7"
+
   }
 }

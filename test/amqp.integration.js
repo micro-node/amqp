@@ -2,6 +2,7 @@ var assert = require('assert');
 var async = require('async');
 var cp = require('child_process');
 var amqp = require('../build/amqp');
+var uuid = require('node-uuid');
 
 var queue = 'rpc_queue';
 
@@ -30,7 +31,7 @@ function client(addr){
 
   var args = Array.prototype.slice.call(arguments);
 
-  args[0] = {params: [args[0]]};
+  args[0] = {id: uuid.v4(), params: [args[0]]};
 
   var amqpClient = amqp.client('localhost', queue);
 
@@ -65,6 +66,21 @@ describe('AMQP RPC Server Client', function() {
       })
     })
   })
+
+
+  describe('send notification messages', function(){
+
+    it('server should receive notifications', function(done){
+
+      amqp.server('localhost', queue, function(req){
+
+        assert(req.method, 'notification');
+        done()
+      });
+
+      amqp.client('localhost', queue)({method: 'notification'})
+    });
+  });
 
 
   describe('server <-> client', function(){
