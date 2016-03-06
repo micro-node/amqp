@@ -12,7 +12,7 @@ function server(cb){
 
   var child = cp.fork(__dirname + '/services/amqp/index.js');
 
-  setTimeout(cb, 3333);
+  cb();
 
   children.push(child);
 }
@@ -26,7 +26,7 @@ function brokenServer(cb){
   children.push(child);
 }
 
-function client(){
+function client(addr){
 
   var args = Array.prototype.slice.call(arguments);
 
@@ -36,6 +36,7 @@ function client(){
 
   amqpClient.apply(amqpClient, args);
 }
+
 
 function killAll(){
 
@@ -49,9 +50,24 @@ process.on('exit', killAll);
 
 describe('AMQP RPC Server Client', function() {
 
-  describe('server <-> client', function(){
+  this.timeout(10000);
 
-    this.timeout(50000);
+  describe('connection errors', function(){
+
+    it('client should respond with error', function(done){
+
+      var brokenClient = amqp.client('fakeuser@localhost', 'test');
+
+      brokenClient({}, function(err){
+
+        assert(err);
+        done();
+      })
+    })
+  })
+
+
+  describe('server <-> client', function(){
 
     before(server);
 
@@ -129,9 +145,7 @@ describe('AMQP RPC Server Client', function() {
         done();
       })
     })
-
   })
-
 
   describe('timeout handling', function(){
 
