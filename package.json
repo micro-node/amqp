@@ -1,6 +1,6 @@
 {
   "name": "micro-node-amqp",
-  "version": "1.1.9",
+  "version": "1.2.0",
   "description": "An AMQP helper",
   "main": "build/amqp.js",
   "scripts": {
@@ -51,6 +51,5 @@
     "mocha": "^2.3.4",
     "v8-profiler": "^5.5.0",
     "node-uuid": "^1.4.7"
-
   }
 }
