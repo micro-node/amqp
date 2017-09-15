@@ -45,11 +45,11 @@
     "babel-register": "^6.0.0",
     "chai": "^3.3.0",
     "coveralls": "^2.11.8",
-    "eslint": "^1.10.3",
+    "eslint": "^4.6.1",
     "ghooks": "^1.0.1",
     "istanbul": "^0.4.2",
     "mocha": "^2.3.4",
-    "v8-profiler": "^5.5.0",
-    "node-uuid": "^1.4.7"
+    "node-uuid": "^1.4.7",
+    "v8-profiler": "^5.5.0"
   }
 }
